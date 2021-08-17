@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { useAuth0, withAuth0 } from "@auth0/auth0-react";
+import { withAuth0 } from "@auth0/auth0-react";
 import { Card } from "react-bootstrap";
 import axios from 'axios';
 class Profile extends Component {
@@ -11,7 +11,7 @@ class Profile extends Component {
           headers: {"Authorization" : `Bearer ${jwt}`},
           method: 'get',
           baseURL: process.env.REACT_APP_SERVER_URL,
-          url: '/test'
+          url: '/books'
         }
         axios(config)
         .then(axiosResults => console.log(axiosResults.data))
