@@ -14,18 +14,18 @@ class MyFavoriteBooks extends React.Component {
   componentDidMount = async () => {
     try {
       let url = `${process.env.REACT_APP_SERVER_URL}/books?email=tahany.ali9995@gmail.com`;
-      axios.get(url).then(res => {
-        this.setState({
-          books: res.data.books,
-        })
-      });
-      console.log(this.state.books)
+      let book = await axios.get(url).then(res => {console.log(res.data)});
+      this.setState({
+        books: book,
+      })
+      console.log(this.state.books);
     } catch(err) {
       console.log(err)
     }
   }
   render() {
     return(
+      <>
       <Card style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>My Favorite Books</Card.Title>
@@ -43,6 +43,7 @@ class MyFavoriteBooks extends React.Component {
         </Card.Text>
       </Card.Body>
     </Card>
+    </>
     )
   }
 }
