@@ -32,7 +32,7 @@ class App extends React.Component {
               </Route>
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             </Switch>
-            <Footer />
+            <Footer style={{position:'absolute',bottom:'0',width:'100%'}}/>
           </IsLoadingAndError>
         </Router>
       </>
