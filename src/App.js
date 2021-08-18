@@ -23,7 +23,7 @@ class App extends React.Component {
             <Header auth ={this.props.auth0}/>
             <Switch>
               <Route exact path="/">
-                {this.props.auth0.isAuthenticated ?  <BestBooks/> : <Login/>}
+                {this.props.auth0.isAuthenticated ?  <BestBooks /> : <Login/>}
                 {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
               </Route>
               <Route exact path="/profile">
