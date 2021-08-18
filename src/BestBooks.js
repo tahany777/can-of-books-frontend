@@ -49,12 +49,14 @@ class BestBooks extends React.Component {
               </Card>
               {this.state.books && (
                 <>
-                  {this.state.books.map((el) => (
+                  {this.state.books.map((el, index) => (
                     <BookCard
                       title={el.title}
                       desc={el.description}
                       status={el.status}
                       key={el.__id}
+                      index1= {index}
+                      server={process.env.REACT_APP_SERVER_URL}
                     />
                   ))}
                 </>
