@@ -5,7 +5,9 @@ import { Card, Carousel } from "react-bootstrap";
 import "./BestBooks.css";
 import BookCard from "./components/BookCard";
 import img from "./assets/black.jpg";
+import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import BookFormModal from "./components/BookFormModal";
 
 class BestBooks extends React.Component {
   constructor(props) {
@@ -14,8 +16,9 @@ class BestBooks extends React.Component {
       books: [],
     };
   }
+  //tahany.ali9995@gmail.com
   componentDidMount = async () => {
-    let url = `${process.env.REACT_APP_SERVER_URL}/books?email=tahany.ali9995@gmail.com`;
+    let url = `${process.env.REACT_APP_SERVER_URL}/books?email=${this.props.auth0.user.email}`;
     try {
       axios.get(url).then((res) => this.setState({ books: res.data.books }));
     } catch (err) {
@@ -25,10 +28,11 @@ class BestBooks extends React.Component {
   render() {
     return (
       <>
-        <Carousel>
+      <BookFormModal email={this.props.auth0.user.email} server={process.env.REACT_APP_SERVER_URL}/>
+        <Carousel style={{ height: "100%"}}>
           <Carousel.Item>
             <img
-              style={{ height: "34rem", width: "100%" }}
+              style={{ width: "100%"}}
               src={img}
               alt="First slide"
             />
@@ -50,7 +54,7 @@ class BestBooks extends React.Component {
                       title={el.title}
                       desc={el.description}
                       status={el.status}
-                      key={el.title}
+                      key={el.__id}
                     />
                   ))}
                 </>
@@ -63,7 +67,7 @@ class BestBooks extends React.Component {
   }
 }
 
-export default BestBooks;
+export default withAuth0(BestBooks);
 /*<Carousel activeIndex={0}>
       <Carousel.Item>
         <img
